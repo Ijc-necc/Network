@@ -1,0 +1,74 @@
+Network Information (Date: 05-05-2024)
+--------------------------------------------------
+
+IP Address: 192.168.1.42/24
+
+Gateway: 192.168.1.1
+
+Subnet Mask: 192.168.1.42/24
+
+DNS Servers: 
+127.0.0.53
+
+OpenPorts:
+19001
+3000
+9042
+9099
+10249
+10248
+10256
+45245
+22
+1338
+53
+27017
+
+Routing Table:
+default via 192.168.1.1 dev enp0s3 proto dhcp src 192.168.1.42 metric 100 
+blackhole 10.1.55.0/26 proto 80 
+10.1.55.27 dev cali49fb7bc15b3 scope link 
+10.1.55.28 dev calif7e0a99c201 scope link 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+192.168.1.0/24 dev enp0s3 proto kernel scope link src 192.168.1.42 metric 100 
+192.168.1.1 dev enp0s3 proto dhcp scope link src 192.168.1.42 metric 100 
+
+ARP Table:
+? (10.1.55.27) at 22:00:b6:25:9d:be [ether] on cali49fb7bc15b3
+? (10.1.55.28) at 96:34:39:71:20:04 [ether] on calif7e0a99c201
+CR1000A.mynetworksettings.com (192.168.1.1) at ac:91:9b:0e:4d:a8 [ether] on enp0s3
+
+Firewall Rules: 
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy DROP)
+target     prot opt source               destination         
+DOCKER-USER  all  --  anywhere             anywhere            
+DOCKER-ISOLATION-STAGE-1  all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere             ctstate RELATED,ESTABLISHED
+DOCKER     all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere            
+ACCEPT     all  --  anywhere             anywhere            
+ACCEPT     all  --  10.1.0.0/16          anywhere             /* generated for MicroK8s pods */
+ACCEPT     all  --  anywhere             10.1.0.0/16          /* generated for MicroK8s pods */
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain DOCKER (1 references)
+target     prot opt source               destination         
+
+Chain DOCKER-ISOLATION-STAGE-1 (1 references)
+target     prot opt source               destination         
+DOCKER-ISOLATION-STAGE-2  all  --  anywhere             anywhere            
+RETURN     all  --  anywhere             anywhere            
+
+Chain DOCKER-ISOLATION-STAGE-2 (1 references)
+target     prot opt source               destination         
+DROP       all  --  anywhere             anywhere            
+RETURN     all  --  anywhere             anywhere            
+
+Chain DOCKER-USER (1 references)
+target     prot opt source               destination         
+RETURN     all  --  anywhere             anywhere            
